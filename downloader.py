@@ -4,7 +4,7 @@ import os
 
 
 ydl_opts = {
-    'writethumbnail': True,
+    'writethumbnail': False,
     'format': 'bestaudio/best',
     'postprocessors': [{
             'key': 'FFmpegExtractAudio',
@@ -30,10 +30,9 @@ def download_with_link(link, save_path):
     
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         if type(link) == str:
-            info = ydl.extract_info(link, True)
-            os.remove(os.path.join(save_path, f"{info['title']}.webp"))
+            # info = ydl.extract_info(link, True)
             # embed_cover_art(info["title"])
-            # ydl.download([link])
+            ydl.download([link])
         # elif type(link) == list:
         #     ydl.download(link)
         else: return None
